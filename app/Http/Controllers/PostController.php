@@ -44,6 +44,7 @@ class PostController extends Controller
         //$data = request()->all();
         $title = request()->title;
         $description = request()->description;
+        $postCreator = request()->postCreator;
 
         //2- store submitted data in database 
         //there is 2 ways to store data
@@ -58,7 +59,8 @@ class PostController extends Controller
         Post::create([
             'title' => $title,
             'description' => $description,
-            'xyz' => 'some value' //ignore
+            'xyz' => 'some value', //ignore
+            'user_id' => $postCreator
         ]);
         //this syntax causes some security issues so the solution for this issues is:
         //fillable proberty in Post model
@@ -81,7 +83,7 @@ class PostController extends Controller
         //1- get user data
         $title = request()->title;
         $description = request()->description;
-
+        $postCreator = request()->postCreator;
         
         //2- update user data in database 
         //1) select or find post
@@ -90,7 +92,8 @@ class PostController extends Controller
         //2) update post data
         $singlePostFromDB->update([
             'title' => $title,
-            'description' => $description
+            'description' => $description,
+            'user_id' => $postCreator
         ]);
 
         

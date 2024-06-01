@@ -19,9 +19,7 @@
   </div>
   <div class="mt-3">
     <label for="inputState" class="form-label">Post Creator</label>
-
-    
-    <select name="post_creator" id="inputState" class="form-select">
+    <select name="postCreator" id="inputState" class="form-select">
       @foreach ($users as $user)
         <option value="{{$user->id}}">{{$user->name}}</option>
       @endforeach

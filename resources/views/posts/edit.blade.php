@@ -24,9 +24,10 @@
   </div>
   <div class="mt-3">
     <label for="inputState" class="form-label">Post Creator</label>
-    <select name="post_creator" id="inputState" class="form-select">
+    <select name="postCreator" id="inputState" class="form-select">
       @foreach ($users as $user)
-      <option value="{{$user->id}}">{{$user->name}}</option>
+      {{-- to make the selected user selected in edit form --}}
+      <option @if($user->id == $post->user_id) selected @endif value="{{$user->id}}">{{$user->name}}</option>
       @endforeach
     </select>
   </div>
