@@ -4,6 +4,16 @@
 
 @section('content')
 
+@if ($errors->any())
+
+<div class="alert alert-danger">
+  @foreach ($errors->all() as $error)
+    <li>{{$error}}</li>
+  @endforeach
+</div>
+  
+@endif
+
 {{-- method takes the request type that you will submit  --}}
 {{-- action takes the url that you will submit the form to it --}}
 <form class="container" method="POST" action="{{route('posts.update', $post->id)}}">
@@ -16,7 +26,7 @@
   {{-- now when i click on update it will take me to update route --}}
   <div class="mt-3">
     <label for="inputEmail4" class="form-label">Title</label>
-    <input name="title" type="text" value="{{$post->title}}" class="form-control" id="inputEmail4">
+    <input name="title" type="text" value="{{$post->title}}" class="form-control">
   </div>
   <div class="mt-3">
     <label for="inputPassword4" class="form-label">Description</label>

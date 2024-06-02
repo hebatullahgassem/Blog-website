@@ -29,6 +29,19 @@ class PostController extends Controller
     }
 
     public function store(){
+        //to validate data
+        //validation logic must be before storing data (Post::create)
+        request()->validate([
+            'title' => ['required', 'min:3'],
+            'description' => ['required', 'min:5'],
+            'postCreator' => ['required', 'exists:users,id'] //this to make sure this id is exists in users table
+            //this will prevent user from manipulating frontend and change id of user in inspect
+            //The selected post creator is invalid. 
+        ]);
+        //takes assosiative array/key and value pairs
+        //this code redirects to same page route if there is empty fields
+        //min validate the minimum number of digits //The title field must be at least 3 characters.
+
         //1- get user data
         //$data = $_POST; //this is the olt way in php
         //return $data; //{"_token":"gorGYrGf3aIQxca9RWA2oeshA9rS8sX8QnCJ4Sws"}
@@ -79,6 +92,13 @@ class PostController extends Controller
     }
 
     public function update($postId){
+        //to validate data
+        request()->validate([
+            'title' => ['required', 'min:3'],
+            'description' => ['required', 'min:5'],
+            'postCreator' => ['required', 'exists:users,id']
+        ]);
+
         //its quit similar to store action
         //1- get user data
         $title = request()->title;

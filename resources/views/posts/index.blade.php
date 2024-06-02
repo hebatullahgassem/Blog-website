@@ -23,7 +23,7 @@
               <td scope="row">{{$post->id}}</td>
               <td>{{$post->title}}</</td>
               <td>{{$post->user ? $post->user->name : 'notfound'}}</</td>
-              <td>{{$post->created_at}}</</td>
+              <td>{{$post->created_at->format('Y-M-d')}}</</td>
               <td>
                 <a href="{{route('posts.show', $post->id)}}" class="btn btn-info">View</a>
                 <a href="{{route('posts.edit', $post->id)}}" class="btn btn-primary">Edit</a>
